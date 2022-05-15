@@ -11,6 +11,7 @@ contract SupplyChain {
         bool elaborado; // true si el lote ya fue sacrificado
         InfoTransporteGanado info_transporte;
         InfoElaboracionCarne info_elaboracion;
+        bool init;
     }
     struct InfoTransporteGanado {
         string lugar_origen;
@@ -54,6 +55,7 @@ contract SupplyChain {
         lote.lugar_crianza = _lugar_crianza;
         lote.alimento      = _alimento;
         lote.ganado        = _ganado;
+        lote.init          = true;
         index_lotes[hash_lote] = lote;
         lotes.push(lote);
     }
@@ -71,7 +73,7 @@ contract SupplyChain {
                                 string memory destino,
                                 string memory fecha,
                                 string memory tiempo) public {
-        require(keccak256(bytes(index_lotes[hash_lote].id_lote)) != keccak256(bytes(vacio)), "Lote no existente.");
+        require(index_lotes[hash_lote].init, "Lote no existente.");
         require(!index_lotes[hash_lote].transportado, "Lote ya transportado.");
         index_lotes[hash_lote].transportado                      = true;
         index_lotes[hash_lote].info_transporte.lugar_origen      = origen;
@@ -87,7 +89,7 @@ contract SupplyChain {
                                 string memory tiempo,
                                 string memory fecha,
                                 string memory codigo_carne) public {
-        require(keccak256(bytes(index_lotes[hash_lote].id_lote)) != keccak256(bytes(vacio)), "Lote no existente.");
+        require(index_lotes[hash_lote].init, "Lote no existente.");
         require(!index_lotes[hash_lote].elaborado, "Lote ya elaborado.");
         index_lotes[hash_lote].elaborado                           = true;
         index_lotes[hash_lote].info_elaboracion.nombre_matadero    = matadero;
