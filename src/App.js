@@ -81,6 +81,16 @@ async function setInfoElaboracion(idLote, matadero, temperatura, humedad, tiempo
   );
 }
 
+//getCarne obtiene la info de la carne que contiene el hash del lote
+async function getCarne(idCarne) {
+  const hashcarne = await sha256(idCarne);
+  const accounts = await web3.eth.requestAccounts();
+  const carne = await supplyChain.methods.getCarne(hashcarne).call({
+    from: accounts[0],
+  });
+  return carne;
+}
+
 // esta funcion devuelve el hash de un mensage
 async function sha256(message) {
   // encode as UTF-8
