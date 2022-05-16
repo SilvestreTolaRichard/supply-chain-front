@@ -1,39 +1,63 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { setInfoTransporte } from '../../App';
 
 export const TransportForm = () => {
-
   const navigate = useNavigate();
 
-  const handleRegister = () => navigate('/transporte', {replace: true});
+  const [data, setData] = useState({
+    lotId:'',
+    place:'',
+    destiny:'',
+    date:'',
+    time:'',  
+  });
+
+  const handleInputChange = (e) => {
+    setData({
+      ...data,
+      [e.target.id]: e.target.value 
+    });
+  }
+
+  const handleSubmit = (e) => {
+    const {lotId, place, destiny, date, time} = data;
+    console.log(data);
+    setInfoTransporte(lotId, place, destiny, date, time)
+      .then(console.log)
+      .catch(err => console.log(err));
+
+    e.preventDefault();
+    navigate('/transporte', {replace: true})
+  }
 
   return (
     <>
       <h1>
         REGISTRO INFORMACION TRANSPORTE DE LOTE
       </h1>
-      <form>
+      <form onSubmit={ handleSubmit } >
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">identificador del Lote</label>
-          <input type="text" className="form-control" id="lotId" aria-describedby="emailHelp" />
+          <label htmlFor="exampleInputEmail1" className="form-label">identificador del Lote</label>
+          <input type="text" className="form-control" id="lotId" aria-describedby="emailHelp" onChange={handleInputChange}/>
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">Lugar de origen</label>
-          <input type="text" className="form-control" id="place" />
+          <label htmlFor="exampleInputPassword1" className="form-label">Lugar de origen</label>
+          <input type="text" className="form-control" id="place" onChange={handleInputChange}/>
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">Lugar de destino</label>
-          <input type="text" className="form-control" id="food" />
+          <label htmlFor="exampleInputPassword1" className="form-label">Lugar de destino</label>
+          <input type="text" className="form-control" id="destiny" onChange={handleInputChange}/>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Fecha de Transporte</label>
-          <input type="text" className="form-control" id="amount" />
+          <input type="text" className="form-control" id="date" onChange={handleInputChange}/>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Tiempo de Transporte</label>
-          <input type="text" className="form-control" id="amount" />
+          <input type="text" className="form-control" id="time" onChange={handleInputChange}/>
         </div>
-        <button onClick={handleRegister} className="btn btn-primary">Submit</button>
+        <button type='submit' className="btn btn-primary">Submit</button>
       </form>
     </>
   );
