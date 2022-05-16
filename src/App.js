@@ -34,7 +34,7 @@ window.onload = async () => {
 }
 
 //getLote obtiene un lote de la blockchain segun su hash
-async function getLote(idLote) {
+export async function getLote(idLote) {
   const hashlote = await sha256(idLote);
   const accounts = await web3.eth.requestAccounts();
   const lote = await supplyChain.methods.getLote(hashlote).call({
@@ -44,7 +44,7 @@ async function getLote(idLote) {
 }
 
 // setLote envia inforacion de un nuevo lote a al contrato inteligente para guardarlo en la blockchain
-async function setLote(idLote, cantidadGanado, lugarCrianza, alimento) {
+export async function setLote(idLote, cantidadGanado, lugarCrianza, alimento) {
   const hashlote = await sha256(idLote);
   const accounts = await web3.eth.requestAccounts();
   await supplyChain.methods.setLote(hashlote, idLote, cantidadGanado, lugarCrianza, alimento).send({
@@ -56,7 +56,7 @@ async function setLote(idLote, cantidadGanado, lugarCrianza, alimento) {
 }
 
 // setInfoTransporte envia inforacion del transporte del lote a al contrato inteligente para guardarlo en la blockchain
-async function setInfoTransporte(idLote, lugarOrigen, lugarDestino, fechaTransporte, tiempoTransporte) {
+export async function setInfoTransporte(idLote, lugarOrigen, lugarDestino, fechaTransporte, tiempoTransporte) {
   const hashlote = await sha256(idLote);
   const accounts = await web3.eth.requestAccounts();
   await supplyChain.methods.setInfoTransporte(hashlote, lugarOrigen, lugarDestino, fechaTransporte, tiempoTransporte).send({
@@ -68,7 +68,7 @@ async function setInfoTransporte(idLote, lugarOrigen, lugarDestino, fechaTranspo
 }
 
 // setInfoElaboracion envia inforacion de la elaboracion del lote a al contrato inteligente para guardarlo en la blockchain
-async function setInfoElaboracion(idLote, matadero, temperatura, humedad, tiempoElaboracion, fechaElaboracion, codigoCarne) {
+export async function setInfoElaboracion(idLote, matadero, temperatura, humedad, tiempoElaboracion, fechaElaboracion, codigoCarne) {
   const hashlote = await sha256(idLote);
   const hashCarne = await sha256(codigoCarne);
   const accounts = await web3.eth.requestAccounts();
