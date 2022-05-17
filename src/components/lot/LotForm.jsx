@@ -20,14 +20,14 @@ export const LotForm = () => {
     });
   }
 
-  const handleSubmit = (e) => {
-    const {lotId,place, food, amount} = data;
-    console.log(data);
-    setLote(lotId, amount, place, food)
-      .then(console.log)
-      .catch(err => console.log(err));
-
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const {lotId,place, food, amount} = data;
+    // console.log(data);
+    await setLote(lotId, amount, place, food);
+      // .then(console.log)
+      // .catch(err => console.log(err));
+
     navigate('/lote', {replace: true})
   }
 

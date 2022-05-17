@@ -20,14 +20,14 @@ export const TransportForm = () => {
     });
   }
 
-  const handleSubmit = (e) => {
-    const {lotId, place, destiny, date, time} = data;
-    console.log(data);
-    setInfoTransporte(lotId, place, destiny, date, time)
-      .then(console.log)
-      .catch(err => console.log(err));
-
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const {lotId, place, destiny, date, time} = data;
+    // console.log(data);
+    await setInfoTransporte(lotId, place, destiny, date, time);
+      // .then(console.log)
+      // .catch(err => console.log(err));
+
     navigate('/transporte', {replace: true})
   }
 

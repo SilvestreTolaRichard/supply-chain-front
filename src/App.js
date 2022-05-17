@@ -29,8 +29,9 @@ window.onload = async () => {
   //setLote("idlote3", 65, "tarija", "soja");
   //await setInfoTransporte("idlote2", "lugarC", "lugarD", "22-04-2022", "5 dias");
   //await setInfoElaboracion("idlote2", "mataderoB", "8.5 C°", "22%", "2 dias", "25-04-2022", "idcarne2");
-  let lote = await getLote("idlote3");
+  let lote = await getLote("idlote11");
   console.log(lote);
+  // console.log(lote["info_elaboracion"]["humedad"]);
 }
 
 //getLote obtiene un lote de la blockchain segun su hash
@@ -91,7 +92,7 @@ async function getCarne(idCarne) {
 }
 
 // esta funcion devuelve el hash de un mensage
-async function sha256(message) {
+export async function sha256(message) {
   // encode as UTF-8
   const msgBuffer = new TextEncoder('utf-8').encode(message);
   // hash the message

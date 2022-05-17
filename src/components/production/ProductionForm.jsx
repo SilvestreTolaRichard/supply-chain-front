@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getLote, setInfoElaboracion } from '../../App';
+import { setInfoElaboracion, sha256 } from '../../App';
 
 export const ProductionForm = () => {
 
   const navigate = useNavigate();
 
-  const [data, setData] = useState({murder: '',placeProd: '',clime:'', humedad: '', date: '' });
+  const [data, setData] = useState({ lotId: '', murder: '',placeProd: '',clime:'', humedad: '', date: '' });
 
   const handleInputChange = (event) => {
     setData({
@@ -15,12 +15,18 @@ export const ProductionForm = () => {
     });
   }
 
-  const handleSubmit = (e) => {
-    const { murder, placeProd, clime, humedad, date } = data;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { lotId, murder, placeProd, clime, humedad, date } = data;
+
+    const codigoCarne = lotId + date;
+    const hashCarne = await sha256(codigoCarne);
 
     // setInfoElaboracion()
+    await setInfoElaboracion(lotId, murder, placeProd, clime, humedad, date, hashCarne);
 
-    e.preventDefault();
+    console.log(hashCarne);
+
     navigate('/elaboracion', {replace: true})
   }
 
@@ -30,6 +36,10 @@ export const ProductionForm = () => {
         REGISTRO INFORMACION DE ELABORACION DE LA CARNE
       </h1>
       <form onSubmit={ handleSubmit }>
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">identificador del Lote</label>
+          <input type="text" className="form-control" id="lotId" aria-describedby="emailHelp" onChange={handleInputChange} />
+        </div>
         <div className="mb-3">
           <label htmlFor='exampleInputEmail1' className="form-label">Matadero</label>
           <input type="text" className="form-control" id="murder" aria-describedby="emailHelp" onChange={handleInputChange} />
