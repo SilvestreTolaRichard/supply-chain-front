@@ -1,13 +1,33 @@
 import Web3 from 'web3'; 
 import contract from './build/SupplyChain.json';
+import Web3Connection from './modules/Web3Connection';
 import { AppRouter } from './routers/AppRouter';
-
+/*
 //web3 es la conexion con la blockchain
 let web3;
 //supplyChain es el contrato inteligente con el cual se comunica con la red
 let supplyChain;
+*/
+// export let web3Connection;
 
+// esta funcion se ejecuta cuando se carga la pagina
+window.onload = async () => {
+  // web3Connection = new Web3Connection();
+  // await web3Connection.init();
+  // let lotes = await web3Connection.getLotes();
+  // console.log(lotes);
+  // await connectWeb3();
+  // supplyChain = new web3.eth.Contract(contract.abi, contract.networks[5777].address);
 
+  // const lotes = await getLotes();
+  // console.log(lotes);
+  // console.log(web3);
+  // console.log(supplyChain);
+  // let lote = await getLote("idlote11");
+  // console.log(lote);
+  // console.log(lote["info_elaboracion"]["humedad"]);
+}
+/*
 //connectWeb3 conecta con web3 para comunicarse con la blockchain
 const connectWeb3 = async () => {
   let provider;
@@ -21,18 +41,7 @@ const connectWeb3 = async () => {
   web3 = new Web3(provider);
 }
 
-// esta funcion se ejecuta cuando se carga la pagina
-window.onload = async () => {
-  await connectWeb3();
-  supplyChain = new web3.eth.Contract(contract.abi, contract.networks[5777].address);
-  //setLote("idlote2", 75, "cbba", "soja");
-  //setLote("idlote3", 65, "tarija", "soja");
-  //await setInfoTransporte("idlote2", "lugarC", "lugarD", "22-04-2022", "5 dias");
-  //await setInfoElaboracion("idlote2", "mataderoB", "8.5 C°", "22%", "2 dias", "25-04-2022", "idcarne2");
-  let lote = await getLote("idlote11");
-  console.log(lote);
-  // console.log(lote["info_elaboracion"]["humedad"]);
-}
+
 
 //getLote obtiene un lote de la blockchain segun su hash
 export async function getLote(idLote) {
@@ -42,6 +51,28 @@ export async function getLote(idLote) {
     from: accounts[0],
   });
   return lote;
+}
+
+//getLotes obtiene todos los lotes de la blockchain segun su hash
+export async function getLotes() {
+  let lotes = [];
+  let accounts = [];
+  accounts = await web3.eth.requestAccounts().catch((error) => {
+    if (error.code === 4001) {
+      // EIP-1193 userRejectedRequest error
+      console.log('Please connect to MetaMask.');
+    } else {
+      console.error(error);
+    }
+  });
+  try {
+    lotes = await supplyChain.methods.getLotes().call({
+      from: accounts[0],
+    });
+  } catch (error) {
+    console.log('No network conection');
+  }
+  return lotes;
 }
 
 // setLote envia inforacion de un nuevo lote a al contrato inteligente para guardarlo en la blockchain
@@ -103,7 +134,7 @@ export async function sha256(message) {
   const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
   return hashHex;
 }
-
+*/
 function App() {
   return (
     <AppRouter />

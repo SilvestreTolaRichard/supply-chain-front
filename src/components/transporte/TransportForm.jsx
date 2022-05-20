@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { setInfoTransporte } from '../../App';
+import Web3Connection from '../../modules/Web3Connection'
 
 export const TransportForm = () => {
   const navigate = useNavigate();
@@ -24,7 +24,9 @@ export const TransportForm = () => {
     e.preventDefault();
     const {lotId, place, destiny, date, time} = data;
     // console.log(data);
-    await setInfoTransporte(lotId, place, destiny, date, time);
+    let web3 = new Web3Connection();
+    await web3.init();
+    await web3.setInfoTransporte(lotId, place, destiny, date, time);
       // .then(console.log)
       // .catch(err => console.log(err));
 

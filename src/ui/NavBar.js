@@ -3,8 +3,8 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 
 export const NavBar = () => {
   return (
-    <main>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+    <main className='vh-100'>
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark px-3">
         <Link className="navbar-brand" to="/" >
           Dashboard
         </Link>

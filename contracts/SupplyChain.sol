@@ -26,6 +26,7 @@ contract SupplyChain {
         string humedad;
         string tiempo_elaboracion;
         string fecha_sacrificio;
+        string hash_carne;
     }
 
     struct Carne {
@@ -39,9 +40,8 @@ contract SupplyChain {
     }
 
     string vacio = "";
-    Lote[] lotes;
+    string[] lotes;
     mapping(string => Lote) index_lotes;
-    Carne[] carnes;
     mapping(string => Carne) index_carnes;
 
     function setLote(string memory hash_lote, 
@@ -57,7 +57,7 @@ contract SupplyChain {
         lote.ganado        = _ganado;
         lote.init          = true;
         index_lotes[hash_lote] = lote;
-        lotes.push(lote);
+        lotes.push(hash_lote);
     }
 
     function getLote(string memory hash_lote) public view returns (Lote memory) {
@@ -65,6 +65,14 @@ contract SupplyChain {
     }
 
     function getLotes() public view returns (Lote[] memory) {
+        Lote[] memory array_lotes = new Lote[](lotes.length);
+        for (uint256 i = 0; i < lotes.length; i++) {
+            array_lotes[i] = index_lotes[lotes[i]];
+        }
+        return array_lotes;
+    }
+
+    function getHashLotes() public view returns (string[] memory) {
         return lotes;
     }
 
@@ -97,10 +105,10 @@ contract SupplyChain {
         index_lotes[hash_lote].info_elaboracion.humedad            = _humedad;
         index_lotes[hash_lote].info_elaboracion.tiempo_elaboracion = tiempo;
         index_lotes[hash_lote].info_elaboracion.fecha_sacrificio   = fecha;
+        index_lotes[hash_lote].info_elaboracion.hash_carne         = codigo_carne;
         Carne memory carne;
         carne.lote = hash_lote;
         index_carnes[codigo_carne] = carne;
-        carnes.push(carne);
     }
 
     function getCarne(string memory hash_carne) public view returns (Carne memory) {

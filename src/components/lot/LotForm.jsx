@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { setLote } from '../../App';
+import Web3Connection from '../../modules/Web3Connection'
 
 export const LotForm = () => {
   
@@ -24,7 +24,9 @@ export const LotForm = () => {
     e.preventDefault();
     const {lotId,place, food, amount} = data;
     // console.log(data);
-    await setLote(lotId, amount, place, food);
+    let web3 = new Web3Connection();
+    await web3.init();
+    await web3.setLote(lotId, amount, place, food);
       // .then(console.log)
       // .catch(err => console.log(err));
 
