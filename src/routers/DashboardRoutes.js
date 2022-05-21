@@ -6,11 +6,13 @@ import { Production } from '../components/production/Production'
 import { ProductionForm } from '../components/production/ProductionForm'
 import { Transport } from '../components/transporte/Transport'
 import { TransportForm } from '../components/transporte/TransportForm'
+import { SearcherMeat } from '../components/meat/SearcherMeat'
 import { NavBar } from '../ui/NavBar'
 
 export const DashboardRoutes = () => {
   return (
     <Routes>
+      <Route path='carne/informacion' element={ <SearcherMeat /> } />
       <Route path='/' element={ <NavBar /> } >
         <Route index path='/' element={<h1>pagina principal</h1>} />
         <Route path='lote' element={ <Lot/> } />

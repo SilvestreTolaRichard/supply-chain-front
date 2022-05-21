@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Web3Connection from '../../modules/Web3Connection'
+import transport from '../../img/truck.svg'
 
 export class Transport extends Component {
   constructor() {
@@ -47,11 +48,18 @@ export class Transport extends Component {
       lote_items = <div>No Lotes</div>;
     }
     return (
-      <div className='container-fluid pb-5 px-4'>
-        <h1>
-          Transporte
-        </h1>
-        <Link to={'register'}> Registrar Lote</Link>
+      <div className='container-fluid pt-3 px-4 pb-5'>
+        <div className='row align-items-center'>
+          <div className='col-1 d-flex justify-content-center pe-0'>
+            <img src={transport} className='w-75' />
+          </div>
+          <h1 className='col-auto'>
+            Transporte
+          </h1>
+          <div className='col-auto ms-auto'>
+            <Link to={'register'}>+ Registrar Lote</Link>
+          </div>
+        </div>
         <div className='row g-3 mt-0'>
           {lote_items}
         </div>
@@ -59,16 +67,3 @@ export class Transport extends Component {
     )
   }
 }
-
-// export const Transport =  () => {
-//   return (
-//     <div className='container-fluid pb-5 px-4'>
-//       <h1>
-//         Transporte
-//       </h1>
-//       <Link to={'register'} >registrar transporte</Link>
-//       <div className='row g-3 mt-0'>
-//       </div>
-//     </div>
-//   )
-// }

@@ -34,33 +34,35 @@ export const TransportForm = () => {
   }
 
   return (
-    <>
-      <h1>
-        REGISTRO INFORMACION TRANSPORTE DE LOTE
-      </h1>
-      <form onSubmit={ handleSubmit } >
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">identificador del Lote</label>
-          <input type="text" className="form-control" id="lotId" aria-describedby="emailHelp" onChange={handleInputChange}/>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Lugar de origen</label>
-          <input type="text" className="form-control" id="place" onChange={handleInputChange}/>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Lugar de destino</label>
-          <input type="text" className="form-control" id="destiny" onChange={handleInputChange}/>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Fecha de Transporte</label>
-          <input type="text" className="form-control" id="date" onChange={handleInputChange}/>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Tiempo de Transporte</label>
-          <input type="text" className="form-control" id="time" onChange={handleInputChange}/>
-        </div>
-        <button type='submit' className="btn btn-primary">Submit</button>
-      </form>
-    </>
+    <div className='container-fluid d-flex justify-content-center pt-3 px-4 pb-5'>
+      <div className='w-50'>
+        <h1>
+          REGISTRO INFORMACION TRANSPORTE DE LOTE
+        </h1>
+        <form onSubmit={handleSubmit} >
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Identificador del Lote</label>
+            <input type="text" className="form-control" id="lotId" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Lugar de origen</label>
+            <input type="text" className="form-control" id="place" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Lugar de destino</label>
+            <input type="text" className="form-control" id="destiny" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Fecha de Transporte</label>
+            <input type="text" className="form-control" id="date" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Tiempo de Transporte</label>
+            <input type="text" className="form-control" id="time" onChange={handleInputChange} />
+          </div>
+          <button type='submit' className="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
   );
 }

@@ -35,29 +35,31 @@ export const LotForm = () => {
 
 
   return (
-    <>
-      <h1>
-        Registro de Lote
-      </h1>
-      <form onSubmit={ handleSubmit }>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">identificador del Lote</label>
-          <input type="text" className="form-control" id="lotId" aria-describedby="emailHelp" onChange={handleInputChange} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Lugar de Crianza</label>
-          <input type="text" className="form-control" id="place" onChange={handleInputChange}/>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Alimento</label>
-          <input type="text" className="form-control" id="food" onChange={handleInputChange}/>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Cantidad de Ganado</label>
-          <input type="text" className="form-control" id="amount" onChange={handleInputChange}/>
-        </div>
-        <button type='submit' className="btn btn-primary">Submit</button>
-      </form>
-    </>
+    <div className='container-fluid d-flex justify-content-center pt-3 px-4 pb-5'>
+      <div className='w-50'>
+        <h1>
+          Registro de Lote
+        </h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Identificador del Lote</label>
+            <input type="text" className="form-control" id="lotId" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Lugar de Crianza</label>
+            <input type="text" className="form-control" id="place" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Alimento</label>
+            <input type="text" className="form-control" id="food" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Cantidad de Ganado</label>
+            <input type="text" className="form-control" id="amount" onChange={handleInputChange} />
+          </div>
+          <button type='submit' className="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
   )
 }

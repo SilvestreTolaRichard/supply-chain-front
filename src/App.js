@@ -12,8 +12,10 @@ let supplyChain;
 
 // esta funcion se ejecuta cuando se carga la pagina
 window.onload = async () => {
-  // web3Connection = new Web3Connection();
+  // let web3Connection = new Web3Connection();
   // await web3Connection.init();
+  // let carne = await web3Connection.getCarne('41466762ed91a8846fbf6c68232abb81836f83505724d496edd8389507499d3e');
+  // console.log(carne);
   // let lotes = await web3Connection.getLotes();
   // console.log(lotes);
   // await connectWeb3();

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Web3Connection from '../../modules/Web3Connection'
+import elaboration from '../../img/meat.svg'
 
 export class Production extends Component {
   constructor() {
@@ -49,11 +50,18 @@ export class Production extends Component {
       lote_items = <div>No Lotes</div>;
     }
     return (
-      <div className='container-fluid pb-5 px-4'>
-        <h1>
-          Elaboracion de la carne
-        </h1>
-        <Link to={'register'} >Registrar elaboracion</Link>
+      <div className='container-fluid pt-3 px-4 pb-5'>
+        <div className='row align-items-center'>
+          <div className='col-1 d-flex justify-content-center pe-0'>
+            <img src={elaboration} className='w-75' />
+          </div>
+          <h1 className='col-auto'>
+            Elaboracion de la carne
+          </h1>
+          <div className='col-auto ms-auto'>
+            <Link to={'register'} >+ Registrar elaboracion</Link>
+          </div>
+        </div>
         <div className='row g-3 mt-0'>
           {lote_items}
         </div>
@@ -61,14 +69,3 @@ export class Production extends Component {
     )
   }
 }
-
-// export const Production = () => {
-//   return (
-//     <div className='container-xl'>
-//       <h1>
-//         Elaboracion de la carne
-//       </h1>
-//       <Link to={'register'} >Registrar elaboracion</Link>
-//     </div>
-//   )
-// }

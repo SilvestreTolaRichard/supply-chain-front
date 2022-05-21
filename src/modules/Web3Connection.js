@@ -30,12 +30,23 @@ export default class Web3Connection {
   }
 
 //getLote obtiene un lote de la blockchain segun su hash
-  async getLote(idLote) {
-    const hashlote = await sha256(idLote);
-    const accounts = await this.web3.eth.requestAccounts();
-    const lote = await this.supplyChain.methods.getLote(hashlote).call({
-      from: accounts[0],
-    });
+  async getLote(idLote, byHash=false) {
+    let lote = [];
+    let hashlote;
+    if (byHash) {
+      hashlote = idLote;
+    } else {
+      hashlote = await sha256(idLote);
+    }
+    const accounts = await await this.getAccounts();
+    try {
+      lote = await this.supplyChain.methods.getLote(hashlote).call({
+        from: accounts[0],
+      });
+      if (!lote["init"]) lote = [];
+    } catch (error) {
+      console.log('No network conection');
+    }
     return lote;
   }
 
@@ -68,7 +79,7 @@ export default class Web3Connection {
   // setInfoTransporte envia inforacion del transporte del lote a al contrato inteligente para guardarlo en la blockchain
   async setInfoTransporte(idLote, lugarOrigen, lugarDestino, fechaTransporte, tiempoTransporte) {
     const hashlote = await sha256(idLote);
-    const accounts = await this.web3.eth.requestAccounts();
+    const accounts = await this.getAccounts();
     await this.supplyChain.methods.setInfoTransporte(hashlote, lugarOrigen, lugarDestino, fechaTransporte, tiempoTransporte).send({
       from: accounts[0],
     }).then(
@@ -78,10 +89,9 @@ export default class Web3Connection {
   }
 
   // setInfoElaboracion envia inforacion de la elaboracion del lote a al contrato inteligente para guardarlo en la blockchain
-  async setInfoElaboracion(idLote, matadero, temperatura, humedad, tiempoElaboracion, fechaElaboracion, codigoCarne) {
+  async setInfoElaboracion(idLote, matadero, temperatura, humedad, tiempoElaboracion, fechaElaboracion, hashCarne) {
     const hashlote = await sha256(idLote);
-    const hashCarne = await sha256(codigoCarne);
-    const accounts = await this.web3.eth.requestAccounts();
+    const accounts = await this.getAccounts();
     await this.supplyChain.methods.setInfoElaboracion(hashlote, matadero, temperatura, humedad, tiempoElaboracion, fechaElaboracion, hashCarne).send({
       from: accounts[0],
     }).then(
@@ -90,13 +100,32 @@ export default class Web3Connection {
     );
   }
 
-  //getCarne obtiene la info de la carne que contiene el hash del lote
-  async getCarne(idCarne) {
-    const hashcarne = await sha256(idCarne);
-    const accounts = await this.web3.eth.requestAccounts();
-    const carne = await this.supplyChain.methods.getCarne(hashcarne).call({
-      from: accounts[0],
-    });
+  //getCarne la carne
+  async getCarne(hashCarne) {
+    let carne = [];
+    const accounts = await this.getAccounts();
+    try {
+      carne = await this.supplyChain.methods.getCarne(hashCarne).call({
+        from: accounts[0],
+      });
+      if (!carne["init"]) carne = [];
+    } catch (error) {
+      console.log('No network conection');
+    }
+    return carne;
+  }
+
+  //getCarne toda la info de la carne
+  async getInfoCarne(hashCarne) {
+    let carne = [];
+    const accounts = await this.getAccounts();
+    try {
+      carne = await this.supplyChain.methods.getInfoCarne(hashCarne).call({
+        from: accounts[0],
+      });
+    } catch (error) {
+      console.log('No network conection');
+    }
     return carne;
   }
 

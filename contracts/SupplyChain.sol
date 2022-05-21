@@ -32,6 +32,7 @@ contract SupplyChain {
     struct Carne {
         string lote;
         InfoTransporteCarne info_transporte;
+        bool init;
     }
 
     struct InfoTransporteCarne {
@@ -108,7 +109,14 @@ contract SupplyChain {
         index_lotes[hash_lote].info_elaboracion.hash_carne         = codigo_carne;
         Carne memory carne;
         carne.lote = hash_lote;
+        carne.init = true;
         index_carnes[codigo_carne] = carne;
+    }
+
+    function getInfoCarne(string memory hash_carne) public view returns (Carne memory, Lote memory) {
+        string memory hash_lote = index_carnes[hash_carne].lote;
+        require(index_carnes[hash_carne].init, "Carne no existente.");
+        return (index_carnes[hash_carne], index_lotes[hash_lote]);
     }
 
     function getCarne(string memory hash_carne) public view returns (Carne memory) {

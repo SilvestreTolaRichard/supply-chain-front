@@ -34,37 +34,39 @@ export const ProductionForm = () => {
   }
 
   return (
-    <>
-      <h1>
-        REGISTRO INFORMACION DE ELABORACION DE LA CARNE
-      </h1>
-      <form onSubmit={ handleSubmit }>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">identificador del Lote</label>
-          <input type="text" className="form-control" id="lotId" aria-describedby="emailHelp" onChange={handleInputChange} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor='exampleInputEmail1' className="form-label">Matadero</label>
-          <input type="text" className="form-control" id="murder" aria-describedby="emailHelp" onChange={handleInputChange} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Temperatura</label>
-          <input type="text" className="form-control" id="clime" onChange={handleInputChange} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">humedad</label>
-          <input type="text" className="form-control" id="humedad" onChange={handleInputChange}/>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Fecha de elaboracion</label>
-          <input type="text" className="form-control" id="date" onChange={handleInputChange}/>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Tiempo de Elaboracion</label>
-          <input type="text" className="form-control" id="timeProd" onChange={handleInputChange} />
-        </div>
-        <button type='submit' className="btn btn-primary">Submit</button>
-      </form>
-    </>
+    <div className='container-fluid d-flex justify-content-center pt-3 px-4 pb-5'>
+      <div className='w-50'>
+        <h1>
+          REGISTRO INFORMACION DE ELABORACION DE LA CARNE
+        </h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Identificador del Lote</label>
+            <input type="text" className="form-control" id="lotId" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor='exampleInputEmail1' className="form-label">Matadero</label>
+            <input type="text" className="form-control" id="murder" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Temperatura</label>
+            <input type="text" className="form-control" id="clime" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">humedad</label>
+            <input type="text" className="form-control" id="humedad" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Fecha de elaboracion</label>
+            <input type="text" className="form-control" id="date" onChange={handleInputChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Tiempo de Elaboracion</label>
+            <input type="text" className="form-control" id="timeProd" onChange={handleInputChange} />
+          </div>
+          <button type='submit' className="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
   );
 }

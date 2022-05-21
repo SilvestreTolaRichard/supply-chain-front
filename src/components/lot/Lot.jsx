@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Web3Connection from '../../modules/Web3Connection'
+import production from '../../img/cow.svg'
 
 export class Lot extends Component {
   constructor() {
@@ -40,11 +41,18 @@ export class Lot extends Component {
       lote_items = <div>No Lotes</div>;
     }
     return (
-      <div className='container-fluid pb-5 px-4'>
-        <h1>
-          Lotes
-        </h1>
-        <Link to={'register'}> Registrar Lote</Link>
+      <div className='container-fluid pt-3 px-4 pb-5'>
+        <div className='row align-items-center'>
+          <div className='col-1 d-flex justify-content-center pe-0'>
+            <img src={production} className='w-75' />
+          </div>
+          <h1 className='col-auto'>
+            Lotes
+          </h1>
+          <div className='col-auto ms-auto'>
+            <Link to={'register'}>+ Registrar Lote</Link>
+          </div>
+        </div>
         <div className='row g-3 mt-0'>
           {lote_items}
         </div>
@@ -52,39 +60,3 @@ export class Lot extends Component {
     )
   }
 }
-
-// export const Lot = () => {
-//   let lote_items;
-//   const lotes = getLotes();
-//   if (lotes.length > 0) {
-//     lote_items = lotes.map((lote) => (
-//       <div className='col-md-6' key={lote["id_lote"].toString()}>
-//         <div className="card">
-//           <div className="card-header">
-//             Id Lote: {lote["id_lote"]}
-//           </div>
-//           <div className="card-body p-1">
-//             <ul className='list-group list-group-flush'>
-//               <li className='list-group-item'>Lugar de crianza:</li>
-//               <li className='list-group-item'>Alimento:</li>
-//               <li className='list-group-item'>Cantidad de ganado:</li>
-//             </ul>
-//           </div>
-//         </div>
-//       </div>
-//     ));
-//   } else {
-//     lote_items = <div>No Lotes</div>;
-//   }
-//   return (
-//     <div className='container-fluid pb-5 px-4'>
-//       <h1>
-//         Lotes
-//       </h1>
-//       <Link to={'register'}> Registrar Lote</Link>
-//       <div className='row g-3 mt-0'>
-//         { lote_items }
-//       </div>
-//     </div>
-//   )
-// }
