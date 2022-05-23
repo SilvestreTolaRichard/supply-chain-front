@@ -1,12 +1,17 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react'
+import { BrowserRouter } from 'react-router-dom';
+import { UserContext } from '../components/UserContext';
 import { DashboardRoutes } from './DashboardRoutes';
 
 export const AppRouter = () => {
+  
+  const [user, setUser] = useState({})
+  
   return (
     <BrowserRouter>
-        <DashboardRoutes />
-
+        <UserContext.Provider value={{ user, setUser }} >
+          <DashboardRoutes />
+        </UserContext.Provider>
     </BrowserRouter>
   )
 }

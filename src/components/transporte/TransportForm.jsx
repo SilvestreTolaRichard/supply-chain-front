@@ -30,7 +30,7 @@ export const TransportForm = () => {
       // .then(console.log)
       // .catch(err => console.log(err));
 
-    navigate('/transporte', {replace: true})
+    navigate('/home/transporte', {replace: true})
   }
 
   return (

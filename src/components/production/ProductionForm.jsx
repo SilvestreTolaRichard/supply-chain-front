@@ -30,7 +30,7 @@ export const ProductionForm = () => {
 
     console.log(hashCarne);
 
-    navigate('/elaboracion', {replace: true})
+    navigate('/home/elaboracion', {replace: true})
   }
 
   return (

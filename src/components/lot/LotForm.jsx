@@ -30,7 +30,7 @@ export const LotForm = () => {
       // .then(console.log)
       // .catch(err => console.log(err));
 
-    navigate('/lote', {replace: true})
+    navigate('/home/lote', {replace: true})
   }
 
 
