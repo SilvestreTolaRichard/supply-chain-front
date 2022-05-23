@@ -12,6 +12,13 @@ export const TransportForm = () => {
     date:'',
     time:'',  
   });
+  const [errors, setErrors] = useState({
+    lotId: '',
+    place: '',
+    destiny: '',
+    date: '',
+    time: '',
+  });
 
   const handleInputChange = (e) => {
     setData({
@@ -20,48 +27,111 @@ export const TransportForm = () => {
     });
   }
 
+  const handleInputBlur = (e) => {
+    let input = e.target;
+    let showError = "is-valid";
+    if (input.value === "") {
+      showError = "is-invalid";
+    }
+    setErrors({
+      ...errors,
+      [input.id]: showError
+    });
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {lotId, place, destiny, date, time} = data;
-    // console.log(data);
-    let web3 = new Web3Connection();
-    await web3.init();
-    await web3.setInfoTransporte(lotId, place, destiny, date, time);
-      // .then(console.log)
-      // .catch(err => console.log(err));
-
-    navigate('/transporte', {replace: true})
+    let hasError = false;
+    let validations = {};
+    for (var [key, value] of Object.entries(data)) {
+      let isValid = "is-valid";
+      if (value === "") {
+        hasError = true;
+        isValid = "is-invalid";
+      }
+      validations[key] = isValid;
+    }
+    setErrors(validations);
+    if (!hasError) {
+      const {lotId, place, destiny, date, time} = data;
+      let web3 = new Web3Connection();
+      await web3.init();
+      await web3.setInfoTransporte(lotId, place, destiny, date, time);
+      navigate('/transporte', {replace: true})
+    }
   }
 
   return (
-    <div className='container-fluid d-flex justify-content-center pt-3 px-4 pb-5'>
-      <div className='w-50'>
-        <h1>
-          REGISTRO INFORMACION TRANSPORTE DE LOTE
-        </h1>
-        <form onSubmit={handleSubmit} >
-          <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">Identificador del Lote</label>
-            <input type="text" className="form-control" id="lotId" onChange={handleInputChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">Lugar de origen</label>
-            <input type="text" className="form-control" id="place" onChange={handleInputChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">Lugar de destino</label>
-            <input type="text" className="form-control" id="destiny" onChange={handleInputChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">Fecha de Transporte</label>
-            <input type="text" className="form-control" id="date" onChange={handleInputChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">Tiempo de Transporte</label>
-            <input type="text" className="form-control" id="time" onChange={handleInputChange} />
-          </div>
-          <button type='submit' className="btn btn-primary">Submit</button>
-        </form>
+    <div className='container-fluid pt-3 px-4 pb-5'>
+      <div className='row justify-content-center'>
+        <div className='col-sm-9 col-md-6'>
+          <h1>
+            Registro de informacion de transporte de lote
+          </h1>
+          <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+            <div className="mb-3">
+              <label htmlFor="lotId" className="form-label">Identificador del Lote</label>
+              <input
+                type="text"
+                className={"form-control " + errors.lotId}
+                id="lotId"
+                onChange={handleInputChange}
+                onBlur={handleInputBlur} />
+              <div className="invalid-feedback">
+                Este campo es requerido.
+              </div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="place" className="form-label">Lugar de origen</label>
+              <input
+                type="text"
+                className={"form-control " + errors.place}
+                id="place"
+                onChange={handleInputChange}
+                onBlur={handleInputBlur} />
+              <div className="invalid-feedback">
+                Este campo es requerido.
+              </div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="destiny" className="form-label">Lugar de destino</label>
+              <input
+                type="text"
+                className={"form-control " + errors.destiny}
+                id="destiny"
+                onChange={handleInputChange}
+                onBlur={handleInputBlur} />
+              <div className="invalid-feedback">
+                Este campo es requerido.
+              </div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="date" className="form-label">Fecha de Transporte</label>
+              <input
+                type="text"
+                className={"form-control " + errors.date}
+                id="date"
+                onChange={handleInputChange}
+                onBlur={handleInputBlur} />
+              <div className="invalid-feedback">
+                Este campo es requerido.
+              </div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="time" className="form-label">Tiempo de Transporte</label>
+              <input
+                type="text"
+                className={"form-control " + errors.time}
+                id="time"
+                onChange={handleInputChange}
+                onBlur={handleInputBlur} />
+              <div className="invalid-feedback">
+                Este campo es requerido.
+              </div>
+            </div>
+            <button type='submit' className="btn btn-dark">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
   );

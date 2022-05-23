@@ -52,7 +52,7 @@ export class Production extends Component {
     return (
       <div className='container-fluid pt-3 px-4 pb-5'>
         <div className='row align-items-center'>
-          <div className='col-1 d-flex justify-content-center pe-0'>
+          <div className='col-2 col-md-1 d-flex justify-content-center pe-0'>
             <img src={elaboration} className='w-75' />
           </div>
           <h1 className='col-auto'>
@@ -62,8 +62,12 @@ export class Production extends Component {
             <Link to={'register'} >+ Registrar elaboracion</Link>
           </div>
         </div>
-        <div className='row g-3 mt-0'>
-          {lote_items}
+        <div className='row justify-content-center'>
+          <div className='col-lg-10'>
+            <div className='row g-3 mt-0'>
+              {lote_items}
+            </div>
+          </div>
         </div>
       </div>
     )
