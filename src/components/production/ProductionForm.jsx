@@ -44,7 +44,6 @@ export const ProductionForm = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     let hasError = false;
     let validations = {};
     for (var [key, value] of Object.entries(data)) {
