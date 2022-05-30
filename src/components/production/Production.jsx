@@ -47,7 +47,7 @@ export class Production extends Component {
         return item;
       });
     } else {
-      lote_items = <div>No Lotes</div>;
+      lote_items = <div><h4>No existen Lotes registrados</h4></div>;
     }
     return (
       <div className='container-fluid pt-3 px-4 pb-5'>
@@ -59,7 +59,7 @@ export class Production extends Component {
             Elaboracion de la carne
           </h1>
           <div className='col-auto ms-auto'>
-            <Link to={'register'} >+ Registrar elaboracion</Link>
+            <Link className='btn btn-primary' to={'register'} >+ Registrar elaboracion</Link>
           </div>
         </div>
         <div className='row justify-content-center'>

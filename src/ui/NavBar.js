@@ -27,23 +27,21 @@ export const NavBar = () => {
 
   return (
     <main className='vh-100'>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-sm" style={{backgroundColor: '#2d620e'}}>
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/" >
+          <Link className="navbar-brand text-white" to="/home" >
             Dashboard
           </Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+ 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <div className="navbar-nav">
-              <Link className="nav-item nav-link" to={`/home/${link}`} >
+              <Link className="nav-item nav-link text-white" to={`/home/${link}`} >
                 {link}
               </Link>
             </div>
           </div>
-          <span className='mr-sm-2 text-white '>{ user.email }</span>
-          <button onClick={ handleLogout } className='btn btn-outline-warning my-2 my-sm-0'>Logout</button>
+          <span className='mx-2 text-white'>{ user.email }</span>
+          <button onClick={ handleLogout } className='btn btn-danger btn-sm'>Logout</button>
         </div>
       </nav>
       <Outlet />

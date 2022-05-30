@@ -9,6 +9,7 @@ import { TransportForm } from '../components/transporte/TransportForm'
 import { SearcherMeat } from '../components/meat/SearcherMeat'
 import { NavBar } from '../ui/NavBar'
 import { LoginScreen } from '../components/login/LoginScreen'
+import { HomeScreen } from '../components/home/HomeScreen'
 
 export const DashboardRoutes = () => {
 
@@ -17,7 +18,7 @@ export const DashboardRoutes = () => {
       <Route path='carne/informacion' element={ <SearcherMeat /> } />
       <Route path='/' element={ <LoginScreen /> } />
       <Route path='/home' element={ <NavBar /> } >
-        <Route path='/home' element={<h1>pagina principal</h1>} />
+        <Route path='/home' element={ <HomeScreen /> } />
         <Route path='lote' element={ <Lot/> } />
         <Route path='lote/register' element={ <LotForm /> } />
         <Route path='transporte' element={ <Transport /> } />

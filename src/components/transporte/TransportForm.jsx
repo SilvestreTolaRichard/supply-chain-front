@@ -57,20 +57,20 @@ export const TransportForm = () => {
       let web3 = new Web3Connection();
       await web3.init();
       await web3.setInfoTransporte(lotId, place, destiny, date, time);
-      navigate('/transporte', {replace: true})
+      navigate('/home/transporte', {replace: true})
     }
   }
 
   return (
     <div className='container-fluid pt-3 px-4 pb-5'>
-      <div className='row justify-content-center'>
+      <div className='row justify-content-center my-5'>
         <div className='col-sm-9 col-md-6'>
           <h1>
             Registro de informacion de transporte de lote
           </h1>
           <form onSubmit={handleSubmit} className="needs-validation" noValidate>
             <div className="mb-3">
-              <label htmlFor="lotId" className="form-label">Identificador del Lote</label>
+              <label htmlFor="lotId" className="form-label">Identificador del Lote:</label>
               <input
                 type="text"
                 className={"form-control " + errors.lotId}
@@ -82,7 +82,7 @@ export const TransportForm = () => {
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="place" className="form-label">Lugar de origen</label>
+              <label htmlFor="place" className="form-label">Lugar de origen:</label>
               <input
                 type="text"
                 className={"form-control " + errors.place}
@@ -94,7 +94,7 @@ export const TransportForm = () => {
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="destiny" className="form-label">Lugar de destino</label>
+              <label htmlFor="destiny" className="form-label">Lugar de destino:</label>
               <input
                 type="text"
                 className={"form-control " + errors.destiny}
@@ -106,7 +106,7 @@ export const TransportForm = () => {
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="date" className="form-label">Fecha de Transporte</label>
+              <label htmlFor="date" className="form-label">Fecha de Transporte:</label>
               <input
                 type="text"
                 className={"form-control " + errors.date}
@@ -118,7 +118,7 @@ export const TransportForm = () => {
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="time" className="form-label">Tiempo de Transporte</label>
+              <label htmlFor="time" className="form-label">Tiempo de Transporte:</label>
               <input
                 type="text"
                 className={"form-control " + errors.time}
@@ -129,7 +129,9 @@ export const TransportForm = () => {
                 Este campo es requerido.
               </div>
             </div>
-            <button type='submit' className="btn btn-dark">Submit</button>
+            <div className='d-grid gap-2 col-6 mx-auto' >
+              <button type='submit' className='btn text-white' style={{backgroundColor: '#2d620e'}}> Registrar </button>
+            </div>
           </form>
         </div>
       </div>

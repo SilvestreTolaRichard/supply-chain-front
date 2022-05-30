@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import { Users } from './users';
 
@@ -25,22 +25,35 @@ export const LoginScreen = () => {
   }
   
   return (
-    <div className='container m-5'>
-      <h1>Login</h1>
-      <hr />
-      <form onSubmit={ handleSubmit } >
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email</label>
-          <input type="email" className="form-control" name='email' onChange={handleInputChange} />
+    <>
+      <nav className="navbar" style={{backgroundColor: '#2d620e'}} >
+        <div className='container-fluid'>
+          <Link className="nav-item nav-link text-white" to='/carne/informacion' >
+            Buscar
+          </Link>
         </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">password</label>
-          <input type="password" className="form-control" name='password' onChange={handleInputChange} />
+      </nav>
+      <div className='container mt-5'>
+        <div className='row row-cols-1 justify-content-md-center'>
+          <h1 className='col text-center' >Login</h1>
+          <form onSubmit={ handleSubmit } >
+            <div className="mb-3 mt-3 row">
+              <label htmlFor="email" className="form-label col-1">Email:</label>
+              <input type="email" className="form-control col" name='email' onChange={handleInputChange} />
+            </div>
+            <div className="mb-3 mt-3 row">
+              <label htmlFor="password" className="form-label col-1">Password:</label>
+              <input type="password" className="form-control col" name='password' onChange={handleInputChange} />
+            </div>
+            <div className='d-grid gap-2 col-6 mx-auto'>
+              <button type='submit' className='btn text-white' style={{backgroundColor: '#2d620e'}}>
+                Login
+              </button>
+            </div>
+          </form>
         </div>
-        <button type='submit' className='btn btn-primary'>
-          Login
-        </button>
-      </form>
-    </div>
+        
+      </div>
+    </>
   )
 }

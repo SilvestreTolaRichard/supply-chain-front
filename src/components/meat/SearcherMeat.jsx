@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Web3Connection from '../../modules/Web3Connection'
 import production from '../../img/cow.svg'
 import transport from '../../img/truck.svg'
@@ -99,22 +100,22 @@ export class SearcherMeat extends Component {
     }
     return (
       <div>
-        <nav className="navbar navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-sm" style={{backgroundColor: '#2d620e'}}>
           <div className='container-fluid'>
             <div></div>
             <form className="d-flex" onSubmit={this.handleSubmit}>
               <input className="form-control me-2" type="search" id="codCarne" placeholder="Codigo de carne" onChange={this.handleChange} />
-              <button className="btn btn-outline-success" type="submit">Buscar</button>
+              <button className="btn btn-dark" type="submit">Buscar</button>
             </form>
           </div>
         </nav>
-        <div className='container-fluid pb-5 px-4'>
+        <div className='container-fluid px-3 py-4'>
           <h1>
             Informacion de la carne
           </h1>
           <div className='row justify-content-center'>
             <div className='col-md-8'>
-              {info}
+              <h4>{info}</h4>
             </div>
           </div>
         </div>

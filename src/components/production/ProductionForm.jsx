@@ -44,6 +44,7 @@ export const ProductionForm = () => {
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     let hasError = false;
     let validations = {};
     for (var [key, value] of Object.entries(data)) {
@@ -63,7 +64,7 @@ export const ProductionForm = () => {
       await web3.init();
       await web3.setInfoElaboracion(lotId, murder, clime, humedad, timeProd, date, hashCarne);
       console.log(hashCarne);
-      navigate('/elaboracion', {replace: true})
+      navigate('/home/elaboracion', {replace: true})
     }
   }
 
@@ -129,7 +130,9 @@ export const ProductionForm = () => {
                 onChange={handleInputChange}
                 onBlur={handleInputBlur} />
             </div>
-            <button type='submit' className="btn btn-dark">Submit</button>
+            <div className='d-grid gap-2 col-6 mx-auto' >
+              <button type='submit' className='btn text-white' style={{backgroundColor: '#2d620e'}}> Registrar </button>
+            </div>
           </form>
         </div>
       </div>

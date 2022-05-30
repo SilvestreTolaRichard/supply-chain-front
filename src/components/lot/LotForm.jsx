@@ -56,7 +56,7 @@ export const LotForm = () => {
       let web3 = new Web3Connection();
       await web3.init();
       await web3.setLote(lotId, amount, place, food);
-      navigate('/lote', {replace: true})
+      navigate('/home/lote', {replace: true})
     }
   }
 
@@ -117,11 +117,13 @@ export const LotForm = () => {
                 Este campo es requerido.
               </div>
             </div>
-            <button
-              type='submit'
-              className="btn btn-dark">
-              Submit
-            </button>
+            <div className='d-grid gap-2 col-6 mx-auto' >
+              <button
+                type='submit'
+                className='btn text-white' style={{backgroundColor: '#2d620e'}}>
+                Registrar
+              </button>
+            </div>
           </form>
         </div>
       </div>
