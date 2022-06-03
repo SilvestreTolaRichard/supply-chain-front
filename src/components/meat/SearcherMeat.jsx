@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import Web3Connection from '../../modules/Web3Connection'
 import production from '../../img/cow.svg'
 import transport from '../../img/truck.svg'
 import elaboration from '../../img/meat.svg'
+import download from '../../img/arrow-thick-to-bottom.svg'
 
 
 export class SearcherMeat extends Component {
@@ -102,7 +102,9 @@ export class SearcherMeat extends Component {
       <div>
         <nav className="navbar navbar-expand-sm" style={{backgroundColor: '#2d620e'}}>
           <div className='container-fluid'>
-            <div></div>
+            <div className='px-4'>
+              <img src={download} role='button' title='Descargar' />
+            </div>
             <form className="d-flex" onSubmit={this.handleSubmit}>
               <input className="form-control me-2" type="search" id="codCarne" placeholder="Codigo de carne" onChange={this.handleChange} />
               <button className="btn btn-dark" type="submit">Buscar</button>

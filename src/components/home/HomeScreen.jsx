@@ -1,3 +1,4 @@
+import supplychain from '../../img/supplychain.png'
 
 export const HomeScreen = () => {
   return (
