@@ -26,33 +26,35 @@ export const LoginScreen = () => {
   
   return (
     <>
-      <nav className="navbar" style={{backgroundColor: '#2d620e'}} >
+      <nav className="navbar" style={{ backgroundColor: '#2d620e' }} >
         <div className='container-fluid'>
           <Link className="nav-item nav-link text-white" to='/carne/informacion' >
             Buscar
           </Link>
         </div>
       </nav>
-      <div className='container mt-5'>
-        <div className='row row-cols-1 justify-content-md-center'>
-          <h1 className='col text-center' >Login</h1>
-          <form onSubmit={ handleSubmit } >
-            <div className="mb-3 mt-3 row">
-              <label htmlFor="email" className="form-label col-1">Email:</label>
-              <input type="email" className="form-control col" name='email' onChange={handleInputChange} />
-            </div>
-            <div className="mb-3 mt-3 row">
-              <label htmlFor="password" className="form-label col-1">Password:</label>
-              <input type="password" className="form-control col" name='password' onChange={handleInputChange} />
-            </div>
-            <div className='d-grid gap-2 col-6 mx-auto'>
-              <button type='submit' className='btn text-white' style={{backgroundColor: '#2d620e'}}>
-                Login
-              </button>
-            </div>
-          </form>
+      <div className='container-fluid'>
+        <div className='row justify-content-center pt-5'>
+          <div className='col-5'>
+            <h1 className='col text-center' >Login</h1>
+            <form onSubmit={handleSubmit} >
+              <div className="mb-3 mt-3 row">
+                <label htmlFor="email" className="form-label col-sm-2">Email:</label>
+                <input type="email" className="form-control col" name='email' onChange={handleInputChange} />
+              </div>
+              <div className="mb-3 mt-3 row">
+                <label htmlFor="password" className="form-label col-sm-2">Password:</label>
+                <input type="password" className="form-control col" name='password' onChange={handleInputChange} />
+              </div>
+              <div className='d-grid gap-2 col-6 mx-auto'>
+                <button type='submit' className='btn text-white' style={{ backgroundColor: '#2d620e' }}>
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-        
+
       </div>
     </>
   )
