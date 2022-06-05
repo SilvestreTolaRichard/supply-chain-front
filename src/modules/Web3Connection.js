@@ -148,4 +148,8 @@ export default class Web3Connection {
     return this.ready;
   }
 
+  async getCantBlocks() {
+    return this.web3.eth.getBlockNumber();
+  }
+
 }

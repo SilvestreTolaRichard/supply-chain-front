@@ -7,6 +7,7 @@ import { ProductionForm } from '../components/production/ProductionForm'
 import { Transport } from '../components/transporte/Transport'
 import { TransportForm } from '../components/transporte/TransportForm'
 import { SearcherMeat } from '../components/meat/SearcherMeat'
+import { Report } from '../components/admin/Report'
 import { Welcome } from '../components/meat/Welcome'
 import { NavBar } from '../ui/NavBar'
 import { LoginScreen } from '../components/login/LoginScreen'
@@ -16,6 +17,7 @@ export const DashboardRoutes = () => {
 
   return (
     <Routes>
+      <Route path='admin/reporte' element={<Report />} />
       <Route path='cliente/home' element={<Welcome />} />
       <Route path='carne/informacion' element={<SearcherMeat />} />
       <Route path='/' element={<LoginScreen />} />
