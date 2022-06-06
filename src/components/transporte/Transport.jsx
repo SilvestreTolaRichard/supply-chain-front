@@ -51,7 +51,7 @@ export class Transport extends Component {
       <div className='container-fluid pt-3 px-4 pb-5'>
         <div className='row align-items-center'>
           <div className='col-2 col-md-1 d-flex justify-content-center pe-0'>
-            <img src={transport} className='w-75' />
+            <img src={transport} className='w-75' alt='transporte' />
           </div>
           <h1 className='col-auto'>
             Transporte

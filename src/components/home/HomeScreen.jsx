@@ -20,7 +20,7 @@ export const HomeScreen = () => {
         <div className="col-sm-6 mb-3">
           <div className='row justify-content-center'>
             <div className='col-sm-10'>
-              <img className='w-100' src={supplychain} />
+              <img className='w-100' src={supplychain} alt='cadena de suministro' />
             </div>
           </div>
         </div>

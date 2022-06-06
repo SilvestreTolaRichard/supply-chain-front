@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Web3Connection from '../../modules/Web3Connection'
 import download from '../../img/arrow-thick-to-bottom.svg'
 
-import { PDFViewer, PDFDownloadLink, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer'
+import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer'
 
 // Create styles
 const styles = StyleSheet.create({
@@ -187,7 +187,7 @@ export class Report extends Component {
             <div className='px-2'>
               <div className={success}>
                 <PDFDownloadLink document={<MyDocument lotes={this.state.lotes} info={info} />} fileName='reporte.pdf'>
-                  <img src={download} role='button' title='Descargar' />
+                  <img src={download} role='button' title='Descargar' alt='descargar' />
                 </PDFDownloadLink>
               </div>
             </div>

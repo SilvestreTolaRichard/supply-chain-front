@@ -5,8 +5,8 @@ import transport from '../../img/truck.svg'
 import elaboration from '../../img/meat.svg'
 import download from '../../img/arrow-thick-to-bottom.svg'
 
-import { PDFViewer, PDFDownloadLink, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer'
-import { Svg, Defs, G, Rect, Path, Image, ClipPath, Circle } from '@react-pdf/renderer'
+import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer'
+import { Svg, Defs, G, Rect, Path, ClipPath, Circle } from '@react-pdf/renderer'
 
 // Create styles
 const styles = StyleSheet.create({
@@ -235,7 +235,7 @@ export class SearcherMeat extends Component {
             <div className='row g-3 mt-0 justify-content-center'>
               <div className='col-6 col-sm-4'>
                 <div className='h-100 d-flex flex-column justify-content-center align-items-center'>
-                  <img src={production} className='w-75' />
+                  <img src={production} className='w-75' alt='ganado' />
                 </div>
               </div>
               <div className='col-12 col-sm-8'>
@@ -251,7 +251,7 @@ export class SearcherMeat extends Component {
             <div className='row g-3 mt-0 justify-content-center'>
               <div className='col-6 col-sm-4 order-sm-1'>
                 <div className='h-100 d-flex flex-column justify-content-center align-items-center'>
-                  <img src={transport} className='w-75' />
+                  <img src={transport} className='w-75' alt='transporte' />
                 </div>
               </div>
               <div className='col-12 col-sm-8'>
@@ -267,7 +267,7 @@ export class SearcherMeat extends Component {
             <div className='row g-3 mt-0 justify-content-center'>
               <div className='col-6 col-sm-4'>
                 <div className='h-100 d-flex flex-column justify-content-center align-items-center'>
-                  <img src={elaboration} className='w-75' />
+                  <img src={elaboration} className='w-75' alt='elaboracion' />
                 </div>
               </div>
               <div className='col-12 col-sm-8'>
@@ -294,7 +294,7 @@ export class SearcherMeat extends Component {
             <div className='px-4'>
               <div className={success}>
                 <PDFDownloadLink document={<MyDocument lote={this.state.infoLote} />} fileName='informacion-carne.pdf'>
-                  <img src={download} role='button' title='Descargar' />
+                  <img src={download} role='button' title='Descargar' alt='descargar' />
                 </PDFDownloadLink>
               </div>
             </div>

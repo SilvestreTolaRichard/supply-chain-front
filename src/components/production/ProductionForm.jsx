@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import sha256 from '../../modules/sha256'
 import Web3Connection from '../../modules/Web3Connection'
 
+import formatDate from '../../modules/formatDate'
+
 export const ProductionForm = () => {
 
   const navigate = useNavigate();
@@ -57,7 +59,8 @@ export const ProductionForm = () => {
     }
     setErrors(validations);
     if (!hasError) {
-      const { lotId, murder, timeProd, clime, humedad, date } = data;
+      let { lotId, murder, timeProd, clime, humedad, date } = data;
+      date = formatDate(date);
       const codigoCarne = lotId + date;
       const hashCarne = await sha256(codigoCarne);
       let web3 = new Web3Connection();
@@ -115,7 +118,7 @@ export const ProductionForm = () => {
             <div className="mb-3">
               <label htmlFor="date" className="form-label">Fecha de elaboracion</label>
               <input
-                type="text"
+                type="date"
                 className={"form-control " + errors.date}
                 id="date"
                 onChange={handleInputChange}

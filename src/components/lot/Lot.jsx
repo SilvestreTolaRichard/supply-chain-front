@@ -44,7 +44,7 @@ export class Lot extends Component {
       <div className='container-fluid pt-3 px-4 pb-5'>
         <div className='row align-items-center'>
           <div className='col-2 col-md-1 d-flex justify-content-center pe-0'>
-            <img src={production} className='w-75' />
+            <img src={production} className='w-75' alt='ganado' />
           </div>
           <h1 className='col-auto'>
             Lotes

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import Web3Connection from '../../modules/Web3Connection'
+
+import formatDate from '../../modules/formatDate'
 
 export const TransportForm = () => {
   const navigate = useNavigate();
@@ -53,7 +55,8 @@ export const TransportForm = () => {
     }
     setErrors(validations);
     if (!hasError) {
-      const {lotId, place, destiny, date, time} = data;
+      let {lotId, place, destiny, date, time} = data;
+      date = formatDate(date);
       let web3 = new Web3Connection();
       await web3.init();
       await web3.setInfoTransporte(lotId, place, destiny, date, time);
@@ -108,7 +111,7 @@ export const TransportForm = () => {
             <div className="mb-3">
               <label htmlFor="date" className="form-label">Fecha de Transporte:</label>
               <input
-                type="text"
+                type="date"
                 className={"form-control " + errors.date}
                 id="date"
                 onChange={handleInputChange}

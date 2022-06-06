@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import carne from '../../img/carne.png'
 
@@ -21,7 +20,7 @@ export function Welcome() {
           <div className='h-100 d-flex flex-column justify-content-center align-items-center'>
             <div className='w-100 row justify-content-center'>
               <div className='col-9'>
-                <img className='w-100' src={carne} />
+                <img className='w-100' src={carne} alt='carne' />
               </div>
             </div>
           </div>
