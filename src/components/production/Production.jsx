@@ -46,6 +46,7 @@ export class Production extends Component {
         }
         return item;
       });
+      lote_items.reverse();
     } else {
       lote_items = <div><h4>No existen Lotes registrados</h4></div>;
     }

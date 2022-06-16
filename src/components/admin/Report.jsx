@@ -76,6 +76,21 @@ const styles = StyleSheet.create({
 });
 
 const MyDocument = ({lotes, info}) => {
+  let items = lotes.map((lote, i) => (
+    <View key={i} style={styles.row} wrap={false}>
+      <Text style={styles.row5}>{lote["id_lote"]}</Text>
+      <Text style={styles.row125}>{lote["lugar_crianza"]}</Text>
+      <Text style={styles.row125}>{lote["alimento"]}</Text>
+      <Text style={styles.row75}>{lote["ganado"]}</Text>
+      <Text style={styles.row10}>{lote["info_transporte"]["fecha_transporte"]}</Text>
+      <Text style={styles.row10}>{lote["info_transporte"]["tiempo_transporte"]}</Text>
+      <Text style={styles.row125}>{lote["info_transporte"]["lugar_destino"]}</Text>
+      <Text style={styles.row125}>{lote["info_elaboracion"]["nombre_matadero"]}</Text>
+      <Text style={styles.row10}>{lote["info_elaboracion"]["fecha_sacrificio"]}</Text>
+      <Text style={styles.row10}>{lote["info_elaboracion"]["tiempo_elaboracion"]}</Text>
+    </View>
+  ));
+  items.reverse();
   return (
     <Document>
       <Page size="A4" style={styles.page} orientation="landscape">
@@ -96,20 +111,7 @@ const MyDocument = ({lotes, info}) => {
               <Text style={styles.row10}>Fecha          sacrificio</Text>
               <Text style={styles.row10}>Tiempo       elaboracion</Text>
             </View>
-            {lotes.map((lote, i) => (
-              <View key={i} style={styles.row} wrap={false}>
-                <Text style={styles.row5}>{lote["id_lote"]}</Text>
-                <Text style={styles.row125}>{lote["lugar_crianza"]}</Text>
-                <Text style={styles.row125}>{lote["alimento"]}</Text>
-                <Text style={styles.row75}>{lote["ganado"]}</Text>
-                <Text style={styles.row10}>{lote["info_transporte"]["fecha_transporte"]}</Text>
-                <Text style={styles.row10}>{lote["info_transporte"]["tiempo_transporte"]}</Text>
-                <Text style={styles.row125}>{lote["info_transporte"]["lugar_destino"]}</Text>
-                <Text style={styles.row125}>{lote["info_elaboracion"]["nombre_matadero"]}</Text>
-                <Text style={styles.row10}>{lote["info_elaboracion"]["fecha_sacrificio"]}</Text>
-                <Text style={styles.row10}>{lote["info_elaboracion"]["tiempo_elaboracion"]}</Text>
-              </View>
-            ))}
+            {items}
           </View>
           <Text style={{padding: '12px 0'}}>Información de los registros</Text>
           <View style={styles.fs}>
@@ -177,6 +179,7 @@ export class Report extends Component {
           </tr>
         );
       });
+      items.reverse();
       success = true;
       info.blocks = this.state.blocks;
     }
