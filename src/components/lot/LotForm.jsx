@@ -29,6 +29,7 @@ export const LotForm = () => {
   const handleInputBlur = (e) => {
     let input = e.target;
     let showError = "is-valid";
+    input.value = input.value.trim();
     if (input.value === "") {
       showError = "is-invalid";
     }
@@ -55,8 +56,17 @@ export const LotForm = () => {
       const { lotId, place, food, amount } = data;
       let web3 = new Web3Connection();
       await web3.init();
-      await web3.setLote(lotId, amount, place, food);
-      navigate('/home/lote', {replace: true})
+      let noExist = true;
+      let lote = await web3.getLote(lotId);
+      if (lote["init"]) {
+        noExist = false;
+      }
+      if (noExist) {
+        await web3.setLote(lotId, amount, place, food);
+        navigate('/home/lote', {replace: true})
+      } else {
+        alert("El lote ya fue registrado");
+      }
     }
   }
 

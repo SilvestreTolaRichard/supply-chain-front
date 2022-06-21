@@ -11,13 +11,13 @@ export const NavBar = () => {
   console.log(user);
   switch (user.role) {
     case 'LOT':
-      link = 'lote'
+      link = 'Lote'
       break;
     case 'TRANSPORT':
-      link = 'transporte'
+      link = 'Transporte'
       break;
     case 'PRODUCTION':
-      link = 'elaboracion'
+      link = 'Elaboracion'
       break;
   }
   const handleLogout = () => {
@@ -37,6 +37,9 @@ export const NavBar = () => {
             <div className="navbar-nav">
               <Link className="nav-item nav-link text-white" to={`/home/${link}`} >
                 {link}
+              </Link>
+              <Link className="nav-item nav-link text-white" to="/admin/reporte" >
+                Reporte
               </Link>
             </div>
           </div>

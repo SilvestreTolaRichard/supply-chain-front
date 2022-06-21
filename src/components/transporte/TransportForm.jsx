@@ -32,6 +32,7 @@ export const TransportForm = () => {
   const handleInputBlur = (e) => {
     let input = e.target;
     let showError = "is-valid";
+    input.value = input.value.trim();
     if (input.value === "") {
       showError = "is-invalid";
     }
@@ -56,11 +57,20 @@ export const TransportForm = () => {
     setErrors(validations);
     if (!hasError) {
       let {lotId, place, destiny, date, time} = data;
-      date = formatDate(date);
       let web3 = new Web3Connection();
       await web3.init();
-      await web3.setInfoTransporte(lotId, place, destiny, date, time);
-      navigate('/home/transporte', {replace: true})
+      let noExist = true;
+      let lote = await web3.getLote(lotId);
+      if (lote["info_transporte"]["lugar_origen"] !== "") {
+        noExist = false;
+      }
+      if (noExist) {
+        date = formatDate(date);
+        await web3.setInfoTransporte(lotId, place, destiny, date, time);
+        navigate('/home/transporte', {replace: true})
+      } else {
+        alert("El lote ya fue transportado");
+      }
     }
   }
 

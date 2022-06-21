@@ -36,6 +36,7 @@ export const ProductionForm = () => {
   const handleInputBlur = (e) => {
     let input = e.target;
     let showError = "is-valid";
+    input.value = input.value.trim();
     if (input.value === "") {
       showError = "is-invalid";
     }
@@ -60,14 +61,23 @@ export const ProductionForm = () => {
     setErrors(validations);
     if (!hasError) {
       let { lotId, murder, timeProd, clime, humedad, date } = data;
-      date = formatDate(date);
-      const codigoCarne = lotId + date;
-      const hashCarne = await sha256(codigoCarne);
       let web3 = new Web3Connection();
       await web3.init();
-      await web3.setInfoElaboracion(lotId, murder, clime, humedad, timeProd, date, hashCarne);
-      console.log(hashCarne);
-      navigate('/home/elaboracion', {replace: true})
+      let noExist = true;
+      let lote = await web3.getLote(lotId);
+      if (lote["info_elaboracion"]["nombre_matadero"] !== "") {
+        noExist = false;
+      }
+      if (noExist) {
+        date = formatDate(date);
+        const codigoCarne = lotId + date;
+        const hashCarne = await sha256(codigoCarne);
+        await web3.setInfoElaboracion(lotId, murder, clime, humedad, timeProd, date, hashCarne);
+        console.log(hashCarne);
+        navigate('/home/elaboracion', { replace: true })
+      } else {
+        alert("El lote ya fue elaborado");
+      }
     }
   }
 
