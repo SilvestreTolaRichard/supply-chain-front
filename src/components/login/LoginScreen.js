@@ -8,20 +8,23 @@ export const LoginScreen = () => {
   
   const { setUser } = useContext(UserContext);
   const [data, setData] = useState({email: '', password:''})
+  const [error, setError] = useState("")
   let navigate = useNavigate();
 
   const handleInputChange = ({ target }) => {
     setData({...data, [target.name]: target.value})
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const { email, password } = data
     const user  = Users.find(user => user.email === email && user.password === password )
-    if (!user) {
-      console.log('el usuario no existe');
+    if (user) {
+      setUser({user});
+      navigate('/home');
+    } else {
+      setError("is-invalid");
     }
-    setUser({user});
-    navigate('/home');
   }
   
   return (
@@ -37,14 +40,22 @@ export const LoginScreen = () => {
         <div className='row justify-content-center pt-5'>
           <div className='col-5'>
             <h1 className='col text-center' >Login</h1>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit} className="needs-validation" >
               <div className="mb-3 mt-3 row">
-                <label htmlFor="email" className="form-label col-sm-2">Email:</label>
+                <label htmlFor="email" className="form-label col-sm-3">Email:</label>
                 <input type="email" className="form-control col" name='email' onChange={handleInputChange} />
               </div>
               <div className="mb-3 mt-3 row">
-                <label htmlFor="password" className="form-label col-sm-2">Password:</label>
-                <input type="password" className="form-control col" name='password' onChange={handleInputChange} />
+                <label htmlFor="password" className="form-label col-sm-3">Contraseña:</label>
+                <input
+                  type="password"
+                  className="form-control col"
+                  name='password'
+                  onChange={handleInputChange} />
+              </div>
+              <input className={"d-none " + error}/>
+              <div class="invalid-feedback text-center m-3">
+                Email o/y contraseña incorrectos
               </div>
               <div className='d-grid gap-2 col-6 mx-auto'>
                 <button type='submit' className='btn text-white' style={{ backgroundColor: '#2d620e' }}>
